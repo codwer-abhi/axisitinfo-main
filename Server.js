@@ -50,6 +50,7 @@ const itemRoutes = require("./Router/itemRoutes.js");
 const itemGroupRoutes = require("./Router/itemGroupRoutes.js");
 const MenuCategoryRoutes=require("./Router/menuCategoryRoutes.js");
 
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
