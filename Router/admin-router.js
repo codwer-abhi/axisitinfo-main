@@ -1,0 +1,16 @@
+const express = require('express');
+const { handleAdmin,handleContact,handledelete,handlecontactdelete,getPendingUsers,approveUser,rejectUser,getApprovedUsers,updateApprovedUser} = require('../Controllers/admin-controller.js');
+const authMiddleware = require('../MIddlewares/authMiddleware.js');
+const adminMiddleware = require('../MIddlewares/admin-middleware.js');
+const adminAuthMiddleware=require('../MIddlewares/adminAuthMiddleware.js');
+const router = express.Router();
+router.get('/', adminAuthMiddleware, adminMiddleware, handleAdmin);
+router.delete('/delete/:id',adminAuthMiddleware,adminMiddleware,handledelete);
+router.delete('/contact/delete/:id',adminAuthMiddleware,adminMiddleware,handlecontactdelete);
+router.get('/contact', adminAuthMiddleware, handleContact);
+router.get('/pending-users', adminAuthMiddleware, adminMiddleware, getPendingUsers);
+router.post('/approve-user', adminAuthMiddleware, adminMiddleware, approveUser);
+router.put('/approved-users/:id', adminAuthMiddleware, adminMiddleware, updateApprovedUser);
+router.post('/reject-user', adminAuthMiddleware, adminMiddleware, rejectUser);
+router.get('/approved-users', adminAuthMiddleware, adminMiddleware, getApprovedUsers);
+module.exports = router;

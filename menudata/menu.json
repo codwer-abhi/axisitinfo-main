@@ -1,0 +1,183 @@
+[
+  {
+    "title": "Dashboard",
+    "icon": "LayoutDashboard",
+    "items": [
+      { "title": "Dashboard", "url": "/dashboard" }
+    ]
+  },
+  {
+    "title": "Main Setup",
+    "icon": "Settings",
+    "nested": true,
+    "subMenu": [
+      {
+        "title": "General Setup",
+        "children": [
+          { "title": "Tax Master", "url": "/main-setup/general-setup/tax-master" },
+          { "title": "Tax Structure", "url": "/main-setup/general-setup/tax-structure" },
+          { "title": "Payment Type", "url": "/main-setup/general-setup/payment-type" },
+          { "title": "Printing Setup", "url": "/main-setup/general-setup/printing-setup" }
+        ]
+      },
+      {
+        "title": "Front Office",
+        "children": [
+          { "title": "Form Parameter", "url": "/main-setup/front-office/form-parameter" },
+          { "title": "Business Source", "url": "/main-setup/front-office/business-source" },
+          { "title": "Guest Status", "url": "/main-setup/front-office/guest-status" },
+          { "title": "Charge Master", "url": "/main-setup/front-office/charge-master" },
+          { "title": "Plan Master", "url": "/main-setup/front-office/plan-master" },
+          { "title": "Room Features", "url": "/main-setup/front-office/room-features" },
+          { "title": "Room Category", "url": "/main-setup/front-office/room-category" },
+          { "title": "Room Master", "url": "/main-setup/front-office/room-master" },
+          { "title": "Booking Source", "url": "/main-setup/front-office/booking-source" },
+          { "title": "Company / Account Master", "url": "/main-setup/front-office/company-master" }
+        ]
+      },
+      {
+        "title":"Utility",
+        "children":[
+          {"title": "User Master", "url": "/main-setup/Utility/user-master"},
+          {"title": "User Permission", "url":"/main-setup/Utility/user-permission"},
+          {"title": "Sundary Master", "url":"/main-setup/Utility/sundry-master"},
+          {"title": "Country Master", "url":"/main-setup/Utility/country-master"},
+          {"title": "State Master", "url":"/main-setup/Utility/state-master"},
+          {"title": "City Master", "url":"/main-setup/Utility/city-master"},
+          {"title": "Department", "url":"/main-setup/Utility/department"},
+          {"title": "Ledger", "url":"/main-setup/Utility/ledger"},
+          {"title": "Unit Master", "url":"/main-setup/Utility/unit-master"}
+        ]
+      },
+      {
+        "title":"Point of Sale",
+        "children":[
+          {"title":"Setup Outlet","url":"/main-setup/outlet-setup/setup-outlet"},
+          {"title":"Outlet Bill Sundry Setting","url":"/main-setup/outlet-setup/voucher-formula"},
+          {"title":"Server Master","url":"/main-setup/outlet-setup/server-master"},
+          {"title":"Table Master","url":"/main-setup/outlet-setup/table-master"},
+          {"title":"Item Master","url":"/main-setup/outlet-setup/item-master"},
+          {"title":"Item Group Master","url":"/main-setup/outlet-setup/item-group-master"},
+          {"title":"Menu Category Master","url":"/main-setup/outlet-setup/menu-category-master"},
+          {"title":"Menu Item Master","url":"/main-setup/outlet-setup/menu-item-master"}
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Front Office",
+    "icon": "ClipboardList",
+    "nested": true,
+    "subMenu": [
+      {
+        "title": "Operations",
+        "children": [
+          { "title": "Walk-In Check-In", "url": "/front-office/walkin-checkin" },
+          { "title": "Room Status", "url": "/front-office/room-status" },
+          { "title": "Room Availability", "url": "/front-office/room-availability" },
+          { "title": "Expected Arrival", "url": "/front-office/expected-arrival" },
+          { "title": "Expected Departure", "url": "/front-office/expected-departure" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Finance",
+    "icon": "DollarSign",
+    "nested": true,
+    "subMenu": [
+      {
+        "title": "Master",
+        "children": [
+          { "title": "Group Account", "url": "/finance/master/group-account" },
+          { "title": "Ledger Account", "url": "/finance/master/ledger-account" }
+        ]
+      },
+      {
+        "title": "Reports",
+        "children": [
+          { "title": "Trial Balance", "url": "/finance/trial-balance" },
+          { "title": "Performa Invoice", "url": "/finance/performa-invoice" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Reports",
+    "icon": "FileText",
+    "items": [
+      { "title": "Sales Register", "url": "/reports/sales-register" },
+      { "title": "Cashier Report", "url": "/reports/cashier-report" },
+      { "title": "Daily Function Sheet", "url": "/reports/daily-function-sheet" },
+      { "title": "Booking Inquiry Detail", "url": "/reports/booking-inquiry-detail" },
+      { "title": "Outstanding Report", "url": "/reports/outstanding-report" },
+      { "title": "Company Wise Sale Report", "url": "/reports/company-wise-sale" },
+      { "title": "Item Wise Sales Report", "url": "/reports/item-wise-sales" }
+    ]
+  },
+  {
+    "title": "Tax Report",
+    "icon": "BarChart3",
+    "items": [
+      { "title": "Tax Reports", "url": "/tax-report/tax-reports" }
+    ]
+  },
+  {
+    "title": "Night Audit",
+    "icon": "Moon",
+    "items": [
+      { "title": "Night Audit Charge Posting", "url": "/night-audit/charge-posting" },
+      { "title": "Reverse Night Audit", "url": "/night-audit/reverse" },
+      { "title": "Account Posting", "url": "/night-audit/account-posting" }
+    ]
+  },
+  {
+    "title": "Operation",
+    "icon": "Settings",
+    "items": [
+      { "title": "Charges Posting", "url": "/operation/charges-posting" },
+      { "title": "Night Audit Process", "url": "/operation/night-audit-process" },
+      { "title": "Reverse Night Audit", "url": "/operation/reverse-night-audit" },
+      { "title": "Account Posting", "url": "/operation/account-posting" }
+    ]
+  },
+  {
+    "title": "Log",
+    "icon": "ClipboardList",
+    "items": [
+      { "title": "Night Audit Log", "url": "/log/night-audit-log" },
+      { "title": "Charges Remove Log", "url": "/log/charges-remove-log" }
+    ]
+  },
+  {
+    "title": "GST Reports",
+    "icon": "FileSearch",
+    "items": [
+      { "title": "GSTR-1", "url": "/gst-reports/gstr-1" }
+    ]
+  },
+  {
+    "title": "Members Mgmt",
+    "icon": "Users",
+    "items": [
+      { "title": "Member List", "url": "/members/list" },
+      { "title": "Add Member", "url": "/members/add" }
+    ]
+  },
+  {
+    "title": "HR/Payroll",
+    "icon": "UserCircle",
+    "items": [
+      { "title": "Employee List", "url": "/hr/employee-list" },
+      { "title": "Payroll", "url": "/hr/payroll" }
+    ]
+  },
+  {
+    "title": "Maintenance",
+    "icon": "Wrench",
+    "items": [
+      { "title": "System Settings", "url": "/maintenance/settings" },
+      { "title": "Backup", "url": "/maintenance/backup" }
+    ]
+  }
+]
