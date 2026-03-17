@@ -33,7 +33,7 @@ const voucherFormulaSchema = new mongoose.Schema(
 
     applyDate: {
       type: Date,
-      required: true
+      
     },
 
     rows: [

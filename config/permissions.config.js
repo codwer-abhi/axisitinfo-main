@@ -133,6 +133,22 @@ module.exports = {
     MENU_ITEM_MASTER: {
       section:"Main Setup",
       screen:"Menu Item Master"
+    },
+    MealTimeRegister: {
+      section:"Main Setup",
+      screen:"Meal Time Register"
+    },
+    NC_TYPE_MASTER: {
+      section:"Main Setup",
+      screen:"NC Type Master"
+    },
+    PARAMETER_SETUP: {
+      section:"Main Setup",
+      screen:"Parameter Setup"
+    },
+      REWARD_POINTS: {
+      section:"Main Setup",
+      screen:"Reward Points"
     }
   },
 

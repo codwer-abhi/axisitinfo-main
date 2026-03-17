@@ -359,22 +359,29 @@ const cancelBill = async (req, res) => {
       return res.status(404).json({ message: "Invalid Hotel Code" });
     }
 
-    const checkin = await Checkin.findOne({
-      _id: id,
-      hotelId: hotel._id
-    });
+  const checkin = await Checkin.findOne({
+  _id: id,
+  hotelId: hotel._id
+});
 
-    if (!checkin) {
-      return res.status(404).json({ message: "Check-in not found" });
-    }
+if (!checkin) {
+  return res.status(404).json({ message: "Checkin not found" });
+}
 
-    // ❌ Bill not generated
-    if (!checkin.billGenerated) {
-      return res.status(400).json({
-        message: "Bill not generated yet"
-      });
-    }
+// 🔴 ADD THIS VALIDATION
+if (!checkin.postedCharges || checkin.postedCharges.length === 0) {
+  return res.status(400).json({
+    message: "Charge posting not done. Bill cannot be generated."
+  });
+}
 
+// 🔒 Already generated → reuse
+if (checkin.billGenerated && checkin.billNo) {
+  return res.json({
+    billNo: checkin.billNo,
+    reused: true
+  });
+}
     // ❌ Already cancelled
     if (checkin.billCancelled) {
       return res.status(400).json({

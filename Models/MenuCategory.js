@@ -47,12 +47,6 @@ const menuCategorySchema = new mongoose.Schema(
       ref: "TaxStructure"
     },
 
-    activeYN: {
-      type: String,
-      enum: ["Y", "N"],
-      default: "Y"
-    },
-
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       refPath: "createdByModel"

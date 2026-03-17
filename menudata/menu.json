@@ -59,7 +59,11 @@
           {"title":"Item Master","url":"/main-setup/outlet-setup/item-master"},
           {"title":"Item Group Master","url":"/main-setup/outlet-setup/item-group-master"},
           {"title":"Menu Category Master","url":"/main-setup/outlet-setup/menu-category-master"},
-          {"title":"Menu Item Master","url":"/main-setup/outlet-setup/menu-item-master"}
+          {"title":"Menu Item Master","url":"/main-setup/outlet-setup/menu-item-master"},
+          {"title":"Session master","url":"/main-setup/outlet-setup/meal-time-register"},
+          {"title":"NC Type Master","url":"/main-setup/outlet-setup/nc-type-master"},
+          {"title":"Parameter Setup","url":"/main-setup/outlet-setup/parameter-setup"},
+          {"title":"Reward Points Master","url":"/main-setup/outlet-setup/reward-points"}
         ]
       }
     ]

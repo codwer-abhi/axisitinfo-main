@@ -49,8 +49,13 @@ const tableMasterRoutes = require("./Router/tableMasterRoutes.js");
 const itemRoutes = require("./Router/itemRoutes.js");
 const itemGroupRoutes = require("./Router/itemGroupRoutes.js");
 const MenuCategoryRoutes=require("./Router/menuCategoryRoutes.js");
-
-
+const mealTimeRoutes=require("./Router/MealTimeRoutes.js");
+const ncTypeRoutes = require("./Router/NcTypeRoutes.js");
+const GeneralParameterpos = require("./Router/generalParameterRoutes.js");
+const OutletParameter = require("./Router/outletParameterRoutes.js");
+const KotParameter = require("./Router/kotParameterRoutes.js");
+const orderBookingParameterRoutes = require("./Router/orderBookingParameterRoutes.js");
+const rewardPointRoutes = require("./Router/rewardPointRoutes.js");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -103,7 +108,13 @@ app.use("/table-master", tableMasterRoutes);
 app.use("/item", itemRoutes);
 app.use("/item-group", itemGroupRoutes);
 app.use("/menu-category",MenuCategoryRoutes);
-
+app.use("/meal-time", mealTimeRoutes);
+app.use("/nc-type", ncTypeRoutes);
+app.use("/general-parameter-pos", GeneralParameterpos);
+app.use("/outlet-parameter", OutletParameter);
+app.use("/kot-parameter", KotParameter);
+app.use("/order-booking-parameter", orderBookingParameterRoutes);
+app.use("/reward-point", rewardPointRoutes);
 app.use(errorMiddleware);
 
 connectToDatabase(process.env.MONGODB_URI)
