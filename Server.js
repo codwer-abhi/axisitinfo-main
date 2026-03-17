@@ -56,6 +56,7 @@ const OutletParameter = require("./Router/outletParameterRoutes.js");
 const KotParameter = require("./Router/kotParameterRoutes.js");
 const orderBookingParameterRoutes = require("./Router/orderBookingParameterRoutes.js");
 const rewardPointRoutes = require("./Router/rewardPointRoutes.js");
+const chargePostingRouter = require("./Router/chargePosting.js");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -115,6 +116,7 @@ app.use("/outlet-parameter", OutletParameter);
 app.use("/kot-parameter", KotParameter);
 app.use("/order-booking-parameter", orderBookingParameterRoutes);
 app.use("/reward-point", rewardPointRoutes);
+app.use("/charge-posting", chargePostingRouter);
 app.use(errorMiddleware);
 
 connectToDatabase(process.env.MONGODB_URI)
