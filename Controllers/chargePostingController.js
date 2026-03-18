@@ -180,7 +180,8 @@ try {
 }
     res.json({
       message: "Charge posted successfully",
-      folioNo: checkin.folioNo
+      folioNo: checkin.folioNo,
+      billNo: checkin.billNo
     });
 
   } catch (error) {
