@@ -380,6 +380,14 @@ if (!checkin.postedCharges || checkin.postedCharges.length === 0) {
 }
 
 // 🔒 Already generated → reuse
+// 🔒 Only allow from print
+if (!req.body?.fromPrint) {
+  return res.status(400).json({
+    message: "Bill can only be generated from print action"
+  });
+}
+
+// 🔁 reuse AFTER validation
 if (checkin.billGenerated && checkin.billNo) {
   return res.json({
     billNo: checkin.billNo,
