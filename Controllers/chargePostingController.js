@@ -133,7 +133,51 @@ exports.postChargeByFolio = async (req, res) => {
     }
 
     await checkin.save();
+// ================= AUTO BILL GENERATE =================
+try {
 
+  if (!checkin.billGenerated) {
+
+    const fy = await FinancialYear.findOne({
+      hotelId: hotel._id,
+      status: "OPEN"
+    });
+
+    if (fy) {
+
+      const lastBill = await Checkin.findOne({
+        hotelId: hotel._id,
+        billNo: { $ne: null }
+      })
+        .sort({ billGeneratedAt: -1 })
+        .select("billNo");
+
+      let nextSeq = 1;
+
+      if (lastBill?.billNo) {
+        const parts = lastBill.billNo.split("/");
+        nextSeq = parseInt(parts[2]) + 1;
+      }
+
+      const startYear = new Date(fy.startDate).getFullYear();
+      const endYear = new Date(fy.endDate).getFullYear();
+
+      const fyLabel = `${startYear}-${endYear}`;
+
+      const billNo = `INV/${fyLabel}/${String(nextSeq).padStart(6, "0")}`;
+
+      checkin.billNo = billNo;
+      checkin.billGenerated = true;
+      checkin.billGeneratedAt = new Date();
+      checkin.billCancelled = false;
+
+      await checkin.save(); // 🔥 second save
+    }
+  }
+
+} catch (err) {
+  console.error("Auto bill generate error:", err.message);
+}
     res.json({
       message: "Charge posted successfully",
       folioNo: checkin.folioNo
