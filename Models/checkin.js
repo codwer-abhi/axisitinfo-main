@@ -93,7 +93,7 @@ const chargePostingSchema = new mongoose.Schema({
   remarks: String
 }, { timestamps: true });
 
-
+ 
 
 const checkinSchema = new mongoose.Schema({
   hotelId: {
