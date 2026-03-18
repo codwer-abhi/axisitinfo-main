@@ -439,11 +439,44 @@ const settleBill = async (req, res) => {
     if (!checkin) {
       return res.status(404).json({ message: "Checkin not found" });
     }
+// 🔥 AUTO GENERATE BILL IF NOT GENERATED
+if (!checkin.billGenerated) {
 
-    // ❌ Bill not generated
-    if (!checkin.billGenerated) {
-      return res.status(400).json({ message: "Bill not generated" });
-    }
+  const fy = await FinancialYear.findOne({
+    hotelId: hotel._id,
+    status: "OPEN"
+  });
+
+  if (!fy) {
+    return res.status(403).json({ message: "No open financial year" });
+  }
+
+  const lastBill = await Checkin.findOne({
+    hotelId: hotel._id,
+    billNo: { $ne: null }
+  })
+    .sort({ billGeneratedAt: -1 })
+    .select("billNo");
+
+  let nextSeq = 1;
+
+  if (lastBill?.billNo) {
+    const parts = lastBill.billNo.split("/");
+    nextSeq = parseInt(parts[2]) + 1;
+  }
+
+  const startYear = new Date(fy.startDate).getFullYear();
+  const endYear = new Date(fy.endDate).getFullYear();
+  const fyLabel = `${startYear}-${endYear}`;
+
+  const billNo = `INV/${fyLabel}/${String(nextSeq).padStart(6, "0")}`;
+
+  checkin.billNo = billNo;
+  checkin.billGenerated = true;
+  checkin.billGeneratedAt = new Date();
+
+  await checkin.save();
+}
 
     // ❌ Already settled
     if (checkin.billSettled) {

@@ -2,7 +2,6 @@ const Checkin = require("../Models/checkin");
 const Registereduser = require("../Models/User");
 const BusinessDate = require("../Models/BusinessDate");
 const FinancialYear = require("../Models/FinancialYear");
-
 const calculateTax = (amount, taxRows = [], taxInc = "No") => {
 
   let totalTax = 0;
@@ -132,57 +131,54 @@ exports.postChargeByFolio = async (req, res) => {
       }
     }
 
-    await checkin.save();
-// ================= AUTO BILL GENERATE =================
-try {
+  await checkin.save();
 
-  if (!checkin.billGenerated) {
+// 🔥 BILL GENERATE START
+if (!checkin.billGenerated) {
 
-    const fy = await FinancialYear.findOne({
-      hotelId: hotel._id,
-      status: "OPEN"
-    });
+  const fy = await FinancialYear.findOne({
+    hotelId: hotel._id,
+    status: "OPEN"
+  });
 
-    if (fy) {
-
-      const lastBill = await Checkin.findOne({
-        hotelId: hotel._id,
-        billNo: { $ne: null }
-      })
-        .sort({ billGeneratedAt: -1 })
-        .select("billNo");
-
-      let nextSeq = 1;
-
-      if (lastBill?.billNo) {
-        const parts = lastBill.billNo.split("/");
-        nextSeq = parseInt(parts[2]) + 1;
-      }
-
-      const startYear = new Date(fy.startDate).getFullYear();
-      const endYear = new Date(fy.endDate).getFullYear();
-
-      const fyLabel = `${startYear}-${endYear}`;
-
-      const billNo = `INV/${fyLabel}/${String(nextSeq).padStart(6, "0")}`;
-
-      checkin.billNo = billNo;
-      checkin.billGenerated = true;
-      checkin.billGeneratedAt = new Date();
-      checkin.billCancelled = false;
-
-      await checkin.save(); // 🔥 second save
-    }
+  if (!fy) {
+    return res.status(403).json({ message: "No open financial year" });
   }
 
-} catch (err) {
-  console.error("Auto bill generate error:", err.message);
+  const lastBill = await Checkin.findOne({
+    hotelId: hotel._id,
+    billNo: { $ne: null }
+  })
+    .sort({ billGeneratedAt: -1 })
+    .select("billNo");
+
+  let nextSeq = 1;
+
+  if (lastBill?.billNo) {
+    const parts = lastBill.billNo.split("/");
+    nextSeq = parseInt(parts[2]) + 1;
+  }
+
+  const startYear = new Date(fy.startDate).getFullYear();
+  const endYear = new Date(fy.endDate).getFullYear();
+
+  const fyLabel = `${startYear}-${endYear}`;
+
+  const billNo = `INV/${fyLabel}/${String(nextSeq).padStart(6, "0")}`;
+
+  checkin.billNo = billNo;
+  checkin.billGenerated = true;
+  checkin.billGeneratedAt = new Date();
+
+  await checkin.save();
 }
-    res.json({
-      message: "Charge posted successfully",
-      folioNo: checkin.folioNo,
-      billNo: checkin.billNo
-    });
+
+// 🔥 FINAL RESPONSE
+res.json({
+  message: "Charge posted & bill generated successfully",
+  folioNo: checkin.folioNo,
+  billNo: checkin.billNo
+});
 
   } catch (error) {
 
