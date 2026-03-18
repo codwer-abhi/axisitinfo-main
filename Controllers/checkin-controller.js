@@ -280,12 +280,6 @@ const generateBill = async (req, res) => {
     if (!checkin) {
       return res.status(404).json({ message: "Checkin not found" });
     }
-// ❌ charge posting check
-if (!checkin.postedCharges || checkin.postedCharges.length === 0) {
-  return res.status(400).json({
-    message: "Charge posting not done. Please run Charge Posting first."
-  });
-}
     // 🔒 Already generated → reuse
     if (checkin.billGenerated && checkin.billNo) {
       return res.json({
