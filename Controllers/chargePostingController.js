@@ -133,51 +133,10 @@ exports.postChargeByFolio = async (req, res) => {
 
   await checkin.save();
 
-// 🔥 BILL GENERATE START
-if (!checkin.billGenerated) {
-
-  const fy = await FinancialYear.findOne({
-    hotelId: hotel._id,
-    status: "OPEN"
-  });
-
-  if (!fy) {
-    return res.status(403).json({ message: "No open financial year" });
-  }
-
-  const lastBill = await Checkin.findOne({
-    hotelId: hotel._id,
-    billNo: { $ne: null }
-  })
-    .sort({ billGeneratedAt: -1 })
-    .select("billNo");
-
-  let nextSeq = 1;
-
-  if (lastBill?.billNo) {
-    const parts = lastBill.billNo.split("/");
-    nextSeq = parseInt(parts[2]) + 1;
-  }
-
-  const startYear = new Date(fy.startDate).getFullYear();
-  const endYear = new Date(fy.endDate).getFullYear();
-
-  const fyLabel = `${startYear}-${endYear}`;
-
-  const billNo = `INV/${fyLabel}/${String(nextSeq).padStart(6, "0")}`;
-
-  checkin.billNo = billNo;
-  checkin.billGenerated = true;
-  checkin.billGeneratedAt = new Date();
-
-  await checkin.save();
-}
-
 // 🔥 FINAL RESPONSE
 res.json({
   message: "Charge posted & bill generated successfully",
-  folioNo: checkin.folioNo,
-  billNo: checkin.billNo
+  folioNo: checkin.folioNo
 });
 
   } catch (error) {
