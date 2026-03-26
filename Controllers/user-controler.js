@@ -248,7 +248,26 @@ const UserloginController = async (req, res) => {
 };
 
 
+// 🔥 GET LOGGED-IN USER (FROM TOKEN)
+const getLoggedInUser = async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      loginType: req.loginType,   // OWNER / USER
+      data: req.user              // ✅ Direct middleware se
+    });
+
+  } catch (error) {
+    console.error("GET LOGGED IN USER ERROR:", error);
+    res.status(500).json({
+      message: "Internal Server Error"
+    });
+  }
+};
 
 
-
-module.exports = {register ,verifyOtp, loginController,UserloginController};
+module.exports = {register ,verifyOtp, loginController,UserloginController, getLoggedInUser};

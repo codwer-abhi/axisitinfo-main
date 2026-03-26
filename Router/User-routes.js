@@ -1,7 +1,8 @@
 const express = require('express');
 const { body } = require('express-validator');
 const router = express.Router();
-const {register,verifyOtp,loginController,UserloginController} = require('../Controllers/user-controler');
+const {register,verifyOtp,loginController,UserloginController,getLoggedInUser} = require('../Controllers/user-controler');
+const authMiddleware = require("../MIddlewares/authMiddleware.js");
 
 // POST /api/auth/register
 router.post(
@@ -20,4 +21,6 @@ router.post(
 router.post('/verify-otp', verifyOtp);
 router.post('/loginowner',loginController);
 router.post("/login", UserloginController);
+router.get('/logedin', authMiddleware,getLoggedInUser);
+
 module.exports = router;
