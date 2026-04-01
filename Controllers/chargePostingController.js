@@ -135,7 +135,7 @@ exports.postChargeByFolio = async (req, res) => {
 
 // 🔥 FINAL RESPONSE
 res.json({
-  message: "Charge posted & bill generated successfully",
+  message: "Charge posted successfully",
   folioNo: checkin.folioNo
 });
 

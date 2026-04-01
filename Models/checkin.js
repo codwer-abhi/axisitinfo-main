@@ -163,13 +163,11 @@ settlements: [
   bookingSource: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "BookingSource",
-    required: true
   },
 
   businessSource: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "BusinessSource",
-    required: true
   },
 
   billTo: String,

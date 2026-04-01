@@ -173,7 +173,11 @@ module.exports = {
     EXPECTED_DEPARTURE: {
       section: "Front Office",
       screen: "Expected Departure"
-    }
+    },
+    CHECKOUT: {
+      section: "Front Office",
+      screen: "Check-Out"
+    },
   },
 
   // ================= FINANCE =================

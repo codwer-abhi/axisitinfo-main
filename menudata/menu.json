@@ -82,7 +82,8 @@
           { "title": "Expected Arrival", "url": "/front-office/expected-arrival" },
           { "title": "Expected Departure", "url": "/front-office/expected-departure" }
         ]
-      }
+      },
+      { "title":"Account Posting","url":"/reports/analysis-report"}
     ]
   },
   {
