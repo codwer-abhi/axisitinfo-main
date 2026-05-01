@@ -16,7 +16,7 @@ const paymentMasterSchema = new mongoose.Schema(
 
     ledgerAccountId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "LedgerAccount",
+      ref: "Ledger",
     },
 
     acPosting: {
