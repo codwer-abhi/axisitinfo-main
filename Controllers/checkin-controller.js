@@ -465,20 +465,40 @@ const settleBill = async (req, res) => {
 
     /* ================= BILL CALCULATION ================= */
 
-    const total = checkin.postedCharges.reduce(
-      (s, c) => s + Number(c.amount || 0),
-      0
-    );
+   // 🔹 Posted Charges
+const postedTotal = (checkin.postedCharges || []).reduce(
+  (s, c) => s + Number(c.amount || 0),
+  0
+);
 
-    const alreadyPaid = checkin.advanceCharges.reduce(
-      (s, a) => s + Number(a.amount || 0),
-      0
-    );
+// 🔹 Room Inclusions (IMPORTANT FIX)
+const inclusionTotal = (checkin.roomInclusions || []).reduce(
+  (sum, inc) => {
+    if (inc.chargePost === "ONCE") {
+      return inc.posted ? sum + Number(inc.amount || 0) : sum;
+    }
 
-    const settlingAmount = payments.reduce(
-      (s, p) => s + Number(p.amount || 0),
-      0
-    );
+    if (inc.chargePost === "DAILY") {
+      return sum + Number(inc.amount || 0);
+    }
+
+    return sum;
+  },
+  0
+);
+
+// ✅ FINAL TOTAL
+const total = postedTotal + inclusionTotal;
+
+  const alreadyPaid = (checkin.advanceCharges || []).reduce(
+  (s, a) => s + Number(a.amount || 0),
+  0
+);
+
+const settlingAmount = (payments || []).reduce(
+  (s, p) => s + Number(p.amount || 0),
+  0
+);
 
     // ✅ ROUND SAFE BALANCE
     const balance = Number(
