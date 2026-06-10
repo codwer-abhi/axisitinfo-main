@@ -181,7 +181,10 @@ settlements: [
     },
     adult: Number,
     child: Number,
-    plans: String,
+    plans: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "PlanMaster"
+},
     rateRs: String,
     taxInc: String,
     leader: String
