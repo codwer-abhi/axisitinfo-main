@@ -84,13 +84,18 @@ const getCheckinsForUser = async (req, res) => {
     const hotelCode = req.hotelId;
 
     const hotel = await Registereduser.findOne({ hotelCode });
+
     if (!hotel) {
-      return res.status(404).json({ message: "Invalid Hotel Code" });
+      return res.status(404).json({
+        message: "Invalid Hotel Code"
+      });
     }
 
     const checkins = await Checkin.find({
       hotelId: hotel._id
-    }).sort({ folioNo: -1 });
+    })
+      .populate("rooms.plans", "planName")
+      .sort({ folioNo: -1 });
 
     res.status(200).json({
       message: "Hotel Check-in Records",
