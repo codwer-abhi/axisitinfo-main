@@ -1,6 +1,8 @@
 require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
+const path = require("path");
+
 const app = express();
 const { connectToDatabase } = require('./utils/db');
 const contactrouter=require('./Router/Contact-route');
@@ -57,6 +59,7 @@ const KotParameter = require("./Router/kotParameterRoutes.js");
 const orderBookingParameterRoutes = require("./Router/orderBookingParameterRoutes.js");
 const rewardPointRoutes = require("./Router/rewardPointRoutes.js");
 const chargePostingRouter = require("./Router/chargePosting.js");
+const pdfRouter = require("./Router/pdf-router.js");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -117,6 +120,11 @@ app.use("/kot-parameter", KotParameter);
 app.use("/order-booking-parameter", orderBookingParameterRoutes);
 app.use("/reward-point", rewardPointRoutes);
 app.use("/charge-posting", chargePostingRouter);
+app.use("/api/pdf", pdfRouter);
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, "uploads"))
+);
 app.use(errorMiddleware);
 
 connectToDatabase(process.env.MONGODB_URI)

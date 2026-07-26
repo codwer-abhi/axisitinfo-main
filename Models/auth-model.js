@@ -44,7 +44,7 @@ userschema.pre('save',async function(next){
         try{
             return jwt.sign(
                 {
-                    userid:this._id.toString(),
+                    userId: this._id.toString(),
                     email:this.email,
                     isAdmin:this.isAdmin,   
                 },
