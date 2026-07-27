@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const authMiddleware = require("../MIddlewares/authMiddleware");
 const adminAuthMiddleware=require('../MIddlewares/adminAuthMiddleware.js');
 
 const upload = require("../MIddlewares/uploadPdf");
