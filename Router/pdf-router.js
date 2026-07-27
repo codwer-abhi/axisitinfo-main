@@ -19,7 +19,7 @@ const {
 // POST /api/pdf/upload
 // ===============================
 router.post(
-  "/upload/pdf",
+  "/uploads/pdf",
  adminAuthMiddleware,
   upload.single("file"),
   uploadPdf
