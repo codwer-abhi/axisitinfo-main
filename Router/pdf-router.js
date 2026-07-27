@@ -43,7 +43,7 @@ router.get("/:slug", getSinglePdf);
 // ===============================
 router.put(
   "/:id",
-  authMiddleware,
+  adminAuthMiddleware,
   upload.single("file"),
   updatePdf
 );
@@ -54,7 +54,7 @@ router.put(
 // ===============================
 router.delete(
   "/:id",
-  authMiddleware,
+  adminAuthMiddleware,
   deletePdf
 );
 
