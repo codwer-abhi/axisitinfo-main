@@ -19,6 +19,7 @@ const {
 // ===============================
 router.post(
   "/upload",
+ adminAuthMiddleware,
   upload.single("file"),
   uploadPdf
 );
@@ -52,7 +53,7 @@ router.put(
 // ===============================
 router.delete(
   "/:id",
-
+  adminAuthMiddleware,
   deletePdf
 );
 
