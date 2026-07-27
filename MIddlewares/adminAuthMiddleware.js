@@ -14,16 +14,18 @@ const adminAuthMiddleware = async (req, res, next) => {
     const token = authHeader.replace("Bearer ", "").trim();
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+console.log(decoded);
+
 
     // 🔐 Token payload validation
-    if (!decoded || !decoded.userid) {
+    if (!decoded || !decoded.userId) {
       return res.status(401).json({
         message: "Invalid token payload"
       });
     }
 
     // 👑 Fetch admin from DB
-    const admin = await User.findById(decoded.userid).select("-password");
+    const admin = await User.findById(decoded.userId).select("-password");
 
     if (!admin) {
       return res.status(401).json({
