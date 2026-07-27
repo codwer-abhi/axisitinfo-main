@@ -29,7 +29,7 @@ router.post(
 // Get All PDFs
 // GET /api/pdf
 // ===============================
-router.get("/", getAllPdf);
+router.get("/uploads/pdf", getAllPdf);
 
 // ===============================
 // Get Single PDF By Slug
