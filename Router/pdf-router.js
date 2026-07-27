@@ -19,7 +19,7 @@ const {
 // POST /api/pdf/upload
 // ===============================
 router.post(
-  "/uploads/pdf",
+  "/upload",
  adminAuthMiddleware,
   upload.single("file"),
   uploadPdf
@@ -29,7 +29,7 @@ router.post(
 // Get All PDFs
 // GET /api/pdf
 // ===============================
-router.get("/uploads/pdf", getAllPdf);
+router.get("/", getAllPdf);
 
 // ===============================
 // Get Single PDF By Slug
