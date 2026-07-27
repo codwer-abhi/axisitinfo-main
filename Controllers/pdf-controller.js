@@ -33,7 +33,7 @@ const uploadPdf = async (req, res) => {
       description,
       slug,
       fileName: req.file.filename,
-      filePath: req.file.path.replace(/\\/g, "/"),
+      filePath: `/uploads/pdf/${req.file.filename}`.replace(/\\/g, "/"),
       fileSize: req.file.size,
       mimeType: req.file.mimetype,
       uploadedBy: req.userId,
